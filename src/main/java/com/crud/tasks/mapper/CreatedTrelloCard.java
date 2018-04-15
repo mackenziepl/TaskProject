@@ -18,6 +18,6 @@ public class CreatedTrelloCard {
     private String name;
     @JsonProperty("shortURL")
     private String shortURL;
-    @JsonProperty("badges")
-    private BadgesDto badges;
+    //@JsonProperty("badges")
+    //private BadgesDto badges;
 }
