@@ -22,11 +22,8 @@ import java.util.List;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyBoolean;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -93,7 +90,7 @@ public class TaskControllerTest {
 
         service.deleteTask(tId);
 
-        verify(service).deleteTask(tId);
+        verify(service, times(1)).deleteTask(tId);
     }
 
     @Test
@@ -127,7 +124,7 @@ public class TaskControllerTest {
         service.saveTask(task);
 
         //When & Then
-        verify(taskMapper).mapToTask(taskDto);
-        verify(service).saveTask(task);
+        verify(taskMapper, times(1)).mapToTask(taskDto);
+        verify(service, times(1)).saveTask(task);
     }
 }

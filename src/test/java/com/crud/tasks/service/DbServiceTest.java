@@ -7,7 +7,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.*;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +14,7 @@ import java.util.Optional;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -24,7 +24,7 @@ public class DbServiceTest {
     @InjectMocks
     private DbService dbService;
 
-    @MockBean
+    @Mock
     private TaskRepository taskRepository;
 
     @Mock
@@ -86,6 +86,6 @@ public class DbServiceTest {
         taskController.deleteTask(taskId);
 
         //Then
-        verify(taskController).deleteTask(taskId);
+        verify(taskController, times(1)).deleteTask(taskId);
     }
 }
