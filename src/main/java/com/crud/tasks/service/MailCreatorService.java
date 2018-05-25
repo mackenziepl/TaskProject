@@ -46,4 +46,21 @@ public class MailCreatorService {
 
         return templateEngine.process("mail/created-trello-card-mail", context);
     }
+
+    public String buildTrelloTasksOneDayEmail(String message) {
+
+        Context context = new Context();
+        context.setVariable("message", message);
+        context.setVariable("tasks_url", "https://mackenziepl.github.io/");
+        context.setVariable("button", "Visit website");
+        context.setVariable("admin_name", adminConfig.getAdminName());
+        context.setVariable("company_name", companyConfig.getCompanyName());
+        context.setVariable("company_mail", companyConfig.getCompanyMail());
+        context.setVariable("company_phone", companyConfig.getCompanyPhone());
+        context.setVariable("show_button", true);
+        context.setVariable("is_friend", false);
+        context.setVariable("admin_config", adminConfig);
+
+        return templateEngine.process("mail/created-trello-task-mail", context);
+    }
 }
