@@ -40,7 +40,7 @@ dependencies {
 
 	compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
 
-	//compile('org.postgresql:postgresql')
+	compile('org.postgresql:postgresql')
 	//providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
 
 	//Swagger
