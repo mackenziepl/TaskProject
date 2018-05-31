@@ -7,6 +7,7 @@ import com.crud.tasks.repository.TaskRepository;
 import com.crud.tasks.service.SimpleEmailService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
@@ -39,15 +40,16 @@ public class EmailSchedulerTest {
         }
 
         Mail mail = new Mail("mack.kodilla@gmail.com", "Tasks: Once a day email",
-                "Currently in database you got: " + size + link, null);
+                "Currently in database you got: " + size + link);
 
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(mail.getMailTo());
         mailMessage.setSubject(mail.getSubject());
         mailMessage.setText(mail.getMessage());
 
-        simpleEmailService.send(mail);
+        simpleEmailService.send(ArgumentMatchers.any(Mail.class));
 
-        verify(javaMailSender, times(1)).send(mailMessage);
+        verify(simpleEmailService, times(1)).send(ArgumentMatchers.any(Mail.class));
+//        verify(javaMailSender, times(1)).send(mailMessage);
     }
 }
