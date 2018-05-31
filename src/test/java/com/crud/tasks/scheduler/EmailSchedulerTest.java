@@ -13,6 +13,7 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessagePreparator;
 
 import java.util.List;
 import java.util.Optional;
@@ -47,9 +48,9 @@ public class EmailSchedulerTest {
         mailMessage.setSubject(mail.getSubject());
         mailMessage.setText(mail.getMessage());
 
-        simpleEmailService.send(ArgumentMatchers.any(Mail.class));
+        simpleEmailService.send(mail);
 
-        verify(simpleEmailService, times(1)).send(ArgumentMatchers.any(Mail.class));
+        verify(javaMailSender, times(1)).send(ArgumentMatchers.any(MimeMessagePreparator.class));
 //        verify(javaMailSender, times(1)).send(mailMessage);
     }
 }

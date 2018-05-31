@@ -11,6 +11,7 @@ import org.springframework.mail.MailMessage;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessagePreparator;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -37,11 +38,10 @@ public class SimpleEmailServiceTest {
         //mailMessage.setCc(mail.getToCc());
 
         //When
-        simpleEmailService.send(ArgumentMatchers.any(Mail.class));
+        simpleEmailService.send(mail);
 
         //Then
-          verify(simpleEmailService, times(1)).send(ArgumentMatchers.any(Mail.class));
-//        verify(javaMailSender, times(1)).send(ArgumentMatchers.any(SimpleMailMessage.class));
+          verify(javaMailSender, times(1)).send(ArgumentMatchers.any(MimeMessagePreparator.class));
 //        verify(javaMailSender, times(1)).send(mailMessage);
     }
 }
